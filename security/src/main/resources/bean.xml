@@ -1,27 +1,24 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:aop="http://www.springframework.org/schema/aop"
       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-   <!--bean就是java对象 , 由Spring创建和管理-->
-   <bean id="hello" class="com.fishman.security.springIoc.MyHello.java">
-       <property name="name" value="Spring"/>
-   </bean>
-   <!-- 第一种根据index参数下标设置 -->
-<bean id="userT" class="com.kuang.pojo.UserT">
-   <!-- index指构造方法 , 下标从0开始 -->
-   <constructor-arg index="0" value="kuangshen2"/>
-</bean>
-<!-- 第二种根据参数名字设置 -->
-<bean id="userT" class="com.kuang.pojo.UserT">
-   <!-- name指参数名 -->
-   <constructor-arg name="name" value="kuangshen2"/>
-</bean>
-<!-- 第三种根据参数类型设置 -->
-<bean id="userT" class="com.kuang.pojo.UserT">
-   <constructor-arg type="java.lang.String" value="kuangshen2"/>
-</bean>
+   <!--注册bean-->
+   <bean id="userService" class="com.kuang.service.UserServiceImpl"/>
+   <bean id="log" class="com.kuang.log.Log"/>
+   <bean id="afterLog" class="com.kuang.log.AfterLog"/>
 
+   <!--aop的配置-->
+   <aop:config>
+       <!--切入点 expression:表达式匹配要执行的方法-->
+       <aop:pointcut id="pointcut" expression="execution(* com.kuang.service.UserServiceImpl.*(..))"/>
+       <!--执行环绕; advice-ref执行方法 . pointcut-ref切入点-->
+       <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>
+       <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
+   </aop:config>
 
-</beans> -->
+</beans>
