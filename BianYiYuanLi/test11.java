@@ -261,31 +261,31 @@ public class test11 {
         }
         return -1;// 不在关系运算表中
     }
-    void readstr() throws Exception{// 从命令行读入源程序
-        BufferedReader sin= new BufferedReader( new
-                InputStreamReader(System. in ));// 从命令行输入的输入流
-        BufferedWriter fw=new BufferedWriter( new FileWriter
-                ("E:"+ File. separator +"fun.txt")); // 输出流，输出到 fun.txt
-        instring=sin.readLine();
-        while (instring.length()!=0){// 将从命令行的输入写入
-            fw.write(instring);
-            fw.newLine();
-            handle();// 处理读入的源程序
-            change_r_l();
-            instring=sin.readLine();
-        }
-        fw.close();
-    }
-    void readtext() throws Exception{// 从文本读入源程序
-        BufferedReader f =new BufferedReader( new FileReader
-                ("E:"+ File. separator +"fun.txt"));
-        instring=f.readLine();
-        while (instring!= null ){
-            handle();// 处理读入的源程序
-            change_r_l();
-            instring=f.readLine();
-        }
-        f.close();
-    }
+    // void readstr() throws Exception{// 从命令行读入源程序
+    //     BufferedReader sin= new BufferedReader( new
+    //             InputStreamReader(System. in ));// 从命令行输入的输入流
+    //     BufferedWriter fw=new BufferedWriter( new FileWriter
+    //             ("G:"+ "code"+File. separator +"fun.txt")); // 输出流，输出到 fun.txt
+    //     instring=sin.readLine();
+    //     while (instring.length()!=0){// 将从命令行的输入写入
+    //         fw.write(instring);
+    //         fw.newLine();
+    //         handle();// 处理读入的源程序
+    //         change_r_l();
+    //         instring=sin.readLine();
+    //     }
+    //     fw.close();
+    // }
+    // void readtext() throws Exception{// 从文本读入源程序
+    //     BufferedReader f =new BufferedReader( new FileReader
+    //             ("E:"+ File. separator +"fun.txt"));
+    //     instring=f.readLine();
+    //     while (instring!= null ){
+    //         handle();// 处理读入的源程序
+    //         change_r_l();
+    //         instring=f.readLine();
+    //     }
+    //     f.close();
+    // }
 }
  
