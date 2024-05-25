@@ -251,7 +251,7 @@ public class test2 {
  
 		for (int i = 0; i < list.size(); i++) {
 			String oneline = list.get(i);
-			String[] vnvt = oneline.split("->i");// 用定义符号分割
+			String[] vnvt = oneline.split("->");// 用定义符号分割
 			String left = vnvt[0].trim(); // 文法的左边
 			VN.add(left);
  

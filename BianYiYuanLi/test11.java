@@ -1,6 +1,5 @@
 
 import java.util.*;
-import java.io.*;
 public class test11 {
     static String k[]={"do","end","then","if","printf","scanf","then","while","auto","break","case","char",
             "const","continue","default","double","else","enum","extern","float","goto","int","long","register",
@@ -25,7 +24,6 @@ public class test11 {
     }
     public static void main(String args[]) throws Exception{
     	test11 one = new test11();
-        System.out .println(" 单 词 二 元 序 列 类 型 位 置（行，列） ");
         one.handle();
         // one.readstr();
         // one.readtext();
@@ -102,21 +100,21 @@ public class test11 {
     }
     void show( int i,String s, char a){// 各种输出处理
         switch (i){
-            case -1:System. out .println(a+" "+"Error"+" Error "+"("+row+","+line+")");
+            case -1:System. out .println(a+" "+"        Error"+"        Error       "+"     ("+row+","+line+")");
                 break ;
-            case 0:System. out .println(s+" "+"Error"+" Error "+"("+row+","+line+")");
+            case 0:System. out .println(s+" "+"         Error"+"        Error       "+"     ("+row+","+line+")");
                 break ;
-            case 1:System. out .println(s+" "+"(1,"+s+")"+" 关 键 字"+"("+row+","+line+")");
+            case 1:System. out .println(s+" "+"     (1,"+s+")       "+" 关 键 字"+"     ("+row+","+line+")");
                 break ;
-            case 2:System. out .println(a+" "+"(2,"+a+")"+" 分 界 符"+"("+row+","+line+")");
+            case 2:System. out .println(a+" "+"     (2,"+a+")       "+" 分 界 符"+"     ("+row+","+line+")");
                 break ;
-            case 3:System. out .println(a+" "+"(3,"+a+")"+" 算 术 运 算 符"+"("+row+","+line+")");
+            case 3:System. out .println(a+" "+"     (3,"+a+")       "+" 算 术 运 算 符"+"       ("+row+","+line+")");
                 break ;
-            case 4:System. out .println(s+" "+"(4,"+s+")"+" 关 系 运 算 符"+"("+row+","+line+")");
+            case 4:System. out .println(s+" "+"     (4,"+s+")       "+" 关 系 运 算 符"+"       ("+row+","+line+")");
                 break ;
-            case 5:System. out .println(s+" "+"(5,"+s+")"+" 常 数"+"("+row+","+line+")");
+            case 5:System. out .println(s+" "+"     (5,"+s+")       "+" 常 数"+"        ("+row+","+line+")");
                 break ;
-            case 6:System. out .println(s+" "+"(6,"+s+")"+" 标 识 符"+"("+row+","+line+")");
+            case 6:System. out .println(s+" "+"     (6,"+s+")       "+" 标 识 符"+"     ("+row+","+line+")");
                 break ;
         }
         line++;// 列数加一
@@ -127,7 +125,9 @@ public class test11 {
     }
     void handle(){// 输入串处理
         pint=-1;// 将搜索指示器置 -1
-        System.out .println(" 要处理的语句为 ： "+instring);
+        System.out .println(" 要处理的语句为 ： ");
+        System.out .println(instring);
+        System.out .println("单词      "+"二元序列     "+"类型     "+"位置");
         getchar();// 读入一个字符
         while (pint<instring.length()){// 当搜索指示器没有越界时
             getbc();// 检查空白直到读入读入非空
@@ -261,31 +261,5 @@ public class test11 {
         }
         return -1;// 不在关系运算表中
     }
-    // void readstr() throws Exception{// 从命令行读入源程序
-    //     BufferedReader sin= new BufferedReader( new
-    //             InputStreamReader(System. in ));// 从命令行输入的输入流
-    //     BufferedWriter fw=new BufferedWriter( new FileWriter
-    //             ("G:"+ "code"+File. separator +"fun.txt")); // 输出流，输出到 fun.txt
-    //     instring=sin.readLine();
-    //     while (instring.length()!=0){// 将从命令行的输入写入
-    //         fw.write(instring);
-    //         fw.newLine();
-    //         handle();// 处理读入的源程序
-    //         change_r_l();
-    //         instring=sin.readLine();
-    //     }
-    //     fw.close();
-    // }
-    // void readtext() throws Exception{// 从文本读入源程序
-    //     BufferedReader f =new BufferedReader( new FileReader
-    //             ("E:"+ File. separator +"fun.txt"));
-    //     instring=f.readLine();
-    //     while (instring!= null ){
-    //         handle();// 处理读入的源程序
-    //         change_r_l();
-    //         instring=f.readLine();
-    //     }
-    //     f.close();
-    // }
 }
  
