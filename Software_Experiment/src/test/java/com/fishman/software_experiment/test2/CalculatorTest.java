@@ -1,77 +1,45 @@
 package com.fishman.software_experiment.test2;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import java.util.Scanner;
+import java.io.ByteArrayInputStream;
 
-class CalculatorTest {
-    // 等价类划分法测试用例
-    @Test
-    void testValidAddition() {
-        assertEquals(100, Calculator.add(50, 50));
+public class CalculatorTest {
+
+    private void provideInput(String data) {
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
     }
-
     @Test
-    void testValidSubtraction() {
-        assertEquals(0, Calculator.subtract(50, 50));
+    public void testValidInput() {
+        provideInput("50\n25\n");
+        Scanner scanner = new Scanner(System.in);
+        assertEquals(75, Calculator.add(50, 25));
+        assertEquals(25, Calculator.subtract(50, 25));
+        assertEquals(1250, Calculator.multiply(50, 25));
+        assertEquals("2.0", Calculator.divide(50, 25));
     }
-
     @Test
-    void testValidMultiplication() {
-        assertEquals(2500, Calculator.multiply(50, 50));
-    }
-
-    @Test
-    void testValidDivision() {
-        assertEquals("1.0", Calculator.divide(50, 50));
-    }
-
-    @Test
-    void testInvalidLowM() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            if (-1 < 0 || -1 > 100) {
-                throw new IllegalArgumentException("输入不在范围内");
-            }
-        });
-    }
-
-    @Test
-    void testInvalidHighN() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            if (101 < 0 || 101 > 100) {
-                throw new IllegalArgumentException("输入不在范围内");
-            }
-        });
-    }
-
-    @Test
-    void testDivideByZero() {
-        assertEquals("除数不能为0", Calculator.divide(50, 0));
-    }
-
-    // 边界值分析法测试用例
-    @Test
-    void testBoundaryValuesAddition() {
-        assertEquals(50, Calculator.add(0, 50));
-        assertEquals(150, Calculator.add(100, 50));
-    }
-
-    @Test
-    void testBoundaryValuesSubtraction() {
-        assertEquals(-50, Calculator.subtract(0, 50));
-        assertEquals(50, Calculator.subtract(100, 50));
-    }
-
-    @Test
-    void testBoundaryValuesMultiplication() {
-        assertEquals(0, Calculator.multiply(0, 50));
-        assertEquals(5000, Calculator.multiply(100, 50));
-    }
-
-    @Test
-    void testBoundaryValuesDivision() {
-        assertEquals("0.0", Calculator.divide(0, 50));
-        assertEquals("2.0", Calculator.divide(100, 50));
-        assertEquals("0.5", Calculator.divide(50, 100));
+    public void testBoundaryValues() {
+        provideInput("0\n0\n");
+        Scanner scanner = new Scanner(System.in);
+        assertEquals(0, Calculator.add(0, 0));
+        assertEquals(0, Calculator.subtract(0, 0));
+        assertEquals(0, Calculator.multiply(0, 0));
         assertEquals("除数不能为0", Calculator.divide(0, 0));
+        provideInput("100\n100\n");
+        assertEquals(200, Calculator.add(100, 100));
+        assertEquals(0, Calculator.subtract(100, 100));
+        assertEquals(10000, Calculator.multiply(100, 100));
+        assertEquals("1.0", Calculator.divide(100, 100));
+    }
+    @Test
+    public void testZeroDivision() {
+        provideInput("50\n0\n");
+        Scanner scanner = new Scanner(System.in);
+        assertEquals(50, Calculator.add(50, 0));
+        assertEquals(50, Calculator.subtract(50, 0));
+        assertEquals(0, Calculator.multiply(50, 0));
+        assertEquals("除数不能为0", Calculator.divide(50, 0));
     }
 }
