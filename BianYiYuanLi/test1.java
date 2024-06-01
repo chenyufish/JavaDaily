@@ -104,7 +104,6 @@ public class test1 {
 				code = 0;
 			}
 	
-			// 经过word+=character后会因为我之前的设定(word=="")导致maybeID或maybeNum不被认可
 			if (!mayBeNum && word.length() == 0 && isNum(character)) {
 				continue;
 			}

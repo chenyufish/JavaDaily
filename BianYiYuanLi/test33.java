@@ -31,12 +31,7 @@ public class test33 {
         System.out.println("计算结果：" + calculate);
     }
 
-    /**
-     * 提取表达式中的变量名
-     *
-     * @param expressionList 中缀表达式List
-     * @return 变量名集合
-     */
+    
     public static Set<String> extractVariableNames(List<String> expressionList) {
         Set<String> variableNames = new HashSet<>();
         for (String item : expressionList) {
@@ -140,8 +135,9 @@ public class test33 {
         return ls;
     }
 
-
+//定义优先级
     public static int priority(String operString) {
+        
         if ("*".equals(operString) || "/".equals(operString)) {
             return 1;
         } else if ("+".equals(operString) || "-".equals(operString)) {

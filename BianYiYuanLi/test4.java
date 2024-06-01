@@ -17,7 +17,7 @@ public class test4 {
             grammarNum = 6;
         }
     }
-    
+
     public static class LRAnalyseTable {
         public char[] terminalChar = {'i', '+', '*', '(', ')', '#'};
         // 定义终结符的个数
@@ -81,7 +81,7 @@ public class test4 {
     // 读取输入的字符串
     private static void readStr() {
         System.out.println("LR(1)分析程序");
-        inputVal = "i+i*i#";
+        inputVal = "i+i*i";
         char[] chars = inputVal.toCharArray();
         for (char ch : chars) {
             inputStr.add(ch);
@@ -100,15 +100,13 @@ public class test4 {
         status.add(0);
         // 把#加入符号栈
         sign.add('#');
-        // 输出初始栈状态
+
         System.out.println(String.format("%-10s%-10s%-10s%-10s%-25s", "步骤", "状态栈", "符号栈", "输入串", "动作说明"));
-        // 初始状态
+
         int s = 0;
-        // 保存之前的状态
+
         int oldStatus;
-        // 获取初始符号
         char ch = inputStr.get(0);
-        // 如果action[s][ch] =="acc" ，则分析成功
         while (!analyseTable.action[s][analyseTable.getTerminalIndex(ch)].equals("acc")) {
             // 获取字符串
             String str = analyseTable.action[s][analyseTable.getTerminalIndex(ch)];
@@ -166,7 +164,6 @@ public class test4 {
         System.out.println(inputVal + "为合法符号串");
     }
 
-    // 对栈容器进行输出, i=0返回status中的字符串, i=1返回sign中的字符串，i=2返回inputStr中的字符串
     private static String vectTrancStr(int i) {
         StringBuilder sb = new StringBuilder();
         if (i == 0) {
