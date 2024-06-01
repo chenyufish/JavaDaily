@@ -17,12 +17,6 @@ public class test3 {
         System.out.println("计算结果：" + calculate);
     }
 
-    /**
-     * 转换成后缀表达式List
-     *
-     * @param ls 中缀表达式List
-     * @return
-     */
     public static List<String> parseSuffixExpression(List<String> ls) {
         Stack<String> s1 = new Stack<>();//运算符栈
         Queue<String> s2 = new ArrayDeque<>();//临时队列
@@ -78,22 +72,10 @@ public class test3 {
         return res;
     }
 
-    /**
-     * 是否操作符
-     *
-     * @param val 元素
-     * @return
-     */
     public static boolean isOper(String val) {
         return "+".equals(val) || "-".equals(val) || "*".equals(val) || "/".equals(val);
     }
 
-    /**
-     * 将中缀表达式转换成对应的List
-     *
-     * @param s 中缀表达式字符串
-     * @return
-     */
     public static List<String> toInfixExpressionList(String s) {
         List<String> ls = new ArrayList<>();
         int i = 0;//指针，用于遍历中缀表达式字符串
@@ -121,12 +103,6 @@ public class test3 {
     }
 
 
-    /**
-     * 返回操作符优先级
-     *
-     * @param operString 操作符
-     * @return
-     */
     public static int priority(String operString) {
         if ("*".equals(operString) || "/".equals(operString)) {
             return 1;
@@ -142,12 +118,6 @@ public class test3 {
      */
     private final static String REGEX_FLOAT = "\\d+||\\d*\\.\\d+||\\d*\\.?\\d+?e[+-]\\d*\\.?\\d+?||e[+-]\\d*\\.?\\d+?";
 
-    /**
-     * 计算后缀表达式List，返回结果
-     *
-     * @param ls
-     * @return
-     */
     public static float calculate(List<String> ls) {
         Stack<String> stack = new Stack<>();
         for (String item : ls) {

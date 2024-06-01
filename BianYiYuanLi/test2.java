@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -12,18 +11,11 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
  
-/**
- * 
- * @Description:[自动去直接左递归、自动生成FIRST、FOLLOW集合、自动构建预测分析表、输入单词串给出推导过程]
- * @author kailang
- * @date 2020-4-25
- * 
- */
 public class test2 {
-	public static final String PATH = "./text2.txt";// 文法
+	public static final String PATH = "./text2.txt";// 预测的文法
 	private static String START; // 开始符号
 	private static HashSet<String> VN, VT; // 非终结符号集、终结符号集
-	private static HashMap<String, ArrayList<ArrayList<String>>> MAP;// key:产生式左边 value:产生式右边(含多条)
+	private static HashMap<String, ArrayList<ArrayList<String>> > MAP;// key:产生式左边 value:产生式右边(含多条)
 	private static HashMap<String, String> oneLeftFirst;// "|" 分开的单条产生式对应的FIRST集合,用于构建预测分析表
 	private static HashMap<String, HashSet<String>> FIRST, FOLLOW; // FIRST、FOLLOW集合
 	private static String[][] FORM; // 存放预测分析表的数组，用于输出
@@ -35,24 +27,15 @@ public class test2 {
 		reformMap();// 消除左递归和提取左公因子
 		findFirst(); // 求FIRST集合
 		findFollow(); // 求FOLLOW集合
-		// 断点测试
-//		VN.toString();
-//		VT.toString();
-//		MAP.toString();
-//		FOLLOW.toString();
-//		FIRST.toString();
-//		oneLeftFirst.toString();
 		if (isLL1()) {
 			preForm(); // 构建预测分析表
-			// printAutoPre("aacbd"); // 示例推导
 			System.out.println("请输入要分析的单词串:");
 			Scanner in = new Scanner(System.in);
 			printAutoPre(in.nextLine());
 			in.close();
 		}
 	}
- 
-	// 变量初始化
+	// 简简单单初始化
 	private static void init() {
 		VN = new HashSet<>();
 		VT = new HashSet<>();
@@ -78,7 +61,6 @@ public class test2 {
 						String bLeft = String.join("", list.get(j).toArray(new String[list.get(j).size()]));
 						if (aLeft.equals("ε") || bLeft.equals("ε")) { // (1)若b＝ε,则要FIRST(A)∩FOLLOW(A)=φ
 							HashSet<String> retainSet = new HashSet<>();
-							// retainSet=FIRST.get(key);//需要要深拷贝，否则修改retainSet时FIRST同样会被修改
 							retainSet.addAll(FIRST.get(key));
 							if (FOLLOW.get(key) != null)
 								retainSet.retainAll(FOLLOW.get(key));
@@ -150,11 +132,12 @@ public class test2 {
 				Iterator<String> it = followCell.iterator();
 				while (it.hasNext()) {
 					String vt = it.next();
-					for (int j = 1; j < FORM.length; j++)
+					for (int j = 1; j < FORM.length; j++){
 						for (int k = 1; k < FORM[0].length; k++) {
 							if (FORM[j][0].equals(FORM[i][0]) && FORM[0][k].equals(vt))
 								FORM[j][k] = oneLeftFirst.get(oneLeftKey);
 						}
+					}
 				}
 			}
 		}
@@ -243,7 +226,6 @@ public class test2 {
 		if (!isSuccess)
 			System.out.println((step++) + "\t#\t#\t" + "分析失败");
 	}
- 
  
 	// 符号分类
 	private static void identifyVnVt(ArrayList<String> list) {
@@ -469,7 +451,7 @@ public class test2 {
 		}
  
 		keyFollow.toString();
- 
+
 		// (4)vn_VnListLeft减去vn_VnListRight,剩下的就是入口产生式，
 		vn_VnListLeft.removeAll(vn_VnListRight);
 		Queue<String> keyQueue = new LinkedList<>();// 用栈或者队列都行
@@ -497,7 +479,6 @@ public class test2 {
 				}
 			}
 		}
- 
 		// 此时keyFollow为完整的FOLLOW集
 		FOLLOW = keyFollow;
 		// 打印FOLLOW集合
@@ -551,9 +532,6 @@ public class test2 {
 				newLeftOld.add(oldRightCell);
 				MAP.put(left, newLeftOld);
 			}
-			// 间接左递归
-			// 提取左公因子
-			// 待续...
  
 		}
 		// 如果文法被修改，则输出修改后的文法

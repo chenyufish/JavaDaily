@@ -2,20 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class test4 {
-    // 定义状态栈
     private static List<Integer> status = new ArrayList<>();
-    // 定义符号栈
     private static List<Character> sign = new ArrayList<>();
     // 定义输入的字符串
     private static List<Character> inputStr = new ArrayList<>();
     // 记录输入的字符串
     private static String inputVal;
 
-
     public static class Grammar {
-        // 产生式的个数
         public int grammarNum;
-        // 定义产生式数组
         public String[] formula = {" ", "E->E+T", "E->T", "T->T*F", "T->F", "F->(E)", "F->i"};
     
         public Grammar() {
@@ -86,10 +81,6 @@ public class test4 {
     // 读取输入的字符串
     private static void readStr() {
         System.out.println("LR(1)分析程序");
-        // System.out.print("请输入分析的字符串：");
-        // 这里需要使用Java的Scanner类进行输入
-        // 省略输入部分的代码，假设输入的字符串被存储在inputVal中
-        // 为了演示，这里假设输入字符串为 "i+i*i#"
         inputVal = "i+i*i#";
         char[] chars = inputVal.toCharArray();
         for (char ch : chars) {
@@ -100,9 +91,7 @@ public class test4 {
     }
 
 
-    // 总控，对输入的字符串进行分析
     public static void LRAnalyse() {
-
      LRAnalyseTable analyseTable = new LRAnalyseTable(); 
      Grammar grammar = new Grammar();
         // 步骤
