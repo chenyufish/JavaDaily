@@ -56,7 +56,7 @@ class Solution {
             else {
                 count = 0;
             }
-            }
+        }
         return false;
     }
 }
